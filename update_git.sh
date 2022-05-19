@@ -2,6 +2,5 @@
 
 for d in ./../* ; do
     echo "$d"	
-	cd $d
-	git pull		
+	cd $d && git pull		
 done
