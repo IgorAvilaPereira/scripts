@@ -1,5 +1,6 @@
 # scripts
 
+* **splitVideo.h:** quebra um vídeo em partes onde cada parte deve ter X segundos (parâmetro)
 * **brave.sh:** Instala o Navegador Brave em sistemas baseados no Ubuntu
 * **cat_with_namefile.sh:** Exibe o conteúdo dos arquivos de uma determinada extensão pelo terminal
 * **commit_git.sh:** Realiza um commit de todos os repositórios de um determinado diretório
