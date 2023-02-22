@@ -17,7 +17,7 @@
 * **setup-flask-psycopg.sh:** configura e instala o virtualenv base para o desenvolvimento de aplicações flask com driver de conexão postgresql (psycopg)
 * **troca_palavras_de_um_diretorio.sh:** substitui um palavra por outra em todos os subdiretórios
 * **update_git.sh:** executa para todos os repostórios git de um diretório o comando git pull
-* **plantuml:**  
+* **plantuml.sh:**  Exporta para diversos formatos diagramas construídos através da sintaxe PlantUML
 ```
 -- exporta para png
 plantuml teste.uml 
