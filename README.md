@@ -2,6 +2,7 @@
 
 * **splitVideo.sh:** quebra um vídeo em partes onde cada parte deve ter X segundos (parâmetro)
 * **brave.sh:** Instala o Navegador Brave em sistemas baseados no Ubuntu
+* **create_folder.py:** Cria pastas com o nome de cada arquivo listagem/presente no diretório
 * **cat_with_namefile.sh:** Exibe o conteúdo dos arquivos de uma determinada extensão pelo terminal
 * **commit_git.sh:** Realiza um commit de todos os repositórios de um determinado diretório
 * **compactar_diretorios.sh:** Compacta todos os diretórios de forma recursiva
