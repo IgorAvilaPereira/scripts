@@ -11,7 +11,7 @@
 * **dump_postgresql.sh:**
 * **encontrar_palavra_em_arquivos_de_um diretorio.sh:** Lista os arquivos que contém uma determinada palavra
 * **git_https_to_ssh.md:** converte um repositório github de https para ssh
-* **headset.sh:** habilita o uso de headsets (particularmente o microfone deles) no Acer Aspire 5 no Linux Mint 20 
+* **headset.sh:** habilita o uso de headsets (particularmente o microfone deles) no Acer Aspire 5 e no Dell Inspiron 5480 no Linux Mint 20 
 * **install-pgadmin4.sh:** instala o pgadmin4
 * **setup-flask-psycopg.sh:** configura e instala o virtualenv base para o desenvolvimento de aplicações flask com driver de conexão postgresql (psycopg)
 * **troca_palavras_de_um_diretorio.sh:** substitui um palavra por outra em todos os subdiretórios
