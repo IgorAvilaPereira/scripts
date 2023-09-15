@@ -23,3 +23,19 @@ plantuml teste.uml
 --  exporta para svg
 plantuml -tsvg teste.uml
 ```
+* **Quantos slots de memória meu pc tem?** 
+```bash
+sudo dmidecode --type 17 | grep 'Memory Device' --count     
+```
+* **O que cada slot de memória tem instalado:**
+```bash
+sudo dmidecode --type 17 | grep -i size
+```
+* **Export my VSCode Extensions:**
+```bash
+code --list-extensions > extensions.txt
+```
+* **Import my VSCode Extensions:**
+```bash
+cat extensions.txt | xargs code --list-extensions {}
+```
