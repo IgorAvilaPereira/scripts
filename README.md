@@ -31,6 +31,10 @@ sudo dmidecode --type 17 | grep 'Memory Device' --count
 ```bash
 sudo dmidecode --type 17 | grep -i size
 ```
+* **Saber mais informações a respeito das memórias instaladas:**
+```bash
+sudo lshw -class memory
+```
 * **Export my VSCode Extensions:**
 ```bash
 code --list-extensions > extensions.txt
@@ -39,3 +43,5 @@ code --list-extensions > extensions.txt
 ```bash
 cat extensions.txt | xargs code --list-extensions {}
 ```
+
+
