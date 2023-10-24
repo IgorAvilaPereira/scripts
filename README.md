@@ -44,5 +44,10 @@ code --list-extensions > extensions.txt
 ```bash
 cat extensions.txt | xargs code --list-extensions {}
 ```
+* **Compactar um arquivo .mp3:**
+```bash
+lame -b 32  podcast.mp3 podcast-32.mp3
+```
+
 
 
