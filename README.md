@@ -50,6 +50,11 @@ cat extensions.txt | xargs code --list-extensions {}
 ```bash
 lame -b 32  podcast.mp3 podcast-32.mp3
 ```
+* **Notificação no XFCE:** 
+```bash
+#!/bin/bash
+zenity --notification --text "Message"
+```
 
 
 
