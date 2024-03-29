@@ -1,5 +1,5 @@
 # scripts
-
+* **Repetindo um áudio infinito:** mpv --loop-file untitled.mp3
 * **Resolvendo o problema do grub que não aparece entre Linux Mint (Ubuntu) e Windows:** https://medium.com/@leijerry888/get-grub-menu-back-after-installing-ubuntu-20-04-alongside-windows-dab5de5afc37 
 * **splitVideo.sh:** quebra um vídeo em partes onde cada parte deve ter X segundos (parâmetro)
 * **brave.sh:** Instala o Navegador Brave em sistemas baseados no Ubuntu
