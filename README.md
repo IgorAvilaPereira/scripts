@@ -61,3 +61,21 @@ zenity --notification --text "Message"
 
 * Custom Actions: Edit >> Configure Custom Actions. Backup: xed ~/.config/Thunar/uca.xml
 
+## Nemo
+
+Edit >> Plugins
+
+* Scripts: ~/.local/share/nemo/scripts directory
+* Actions: The files should have extension .nemo_action and they should be located in ~/.local/share/nemo/actions
+* Exemplo:
+```
+[Nemo Action]
+Active=true
+Name=Reduce Image 50%
+Comment=Reduce the size of the image by 50%
+Exec=ffmpeg -i %F -vf scale=iw/2:-1 copy-50%f
+Icon-Name=image
+Selection=any;
+Extensions=jpg;jpeg;png;bmp;gif;tiff;raw;
+Terminal=true
+```
