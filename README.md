@@ -57,4 +57,7 @@ zenity --notification --text "Message"
 ```
 
 
+## Thunar
+
+* Custom Actions: Edit >> Configure Custom Actions. Backup: xed ~/.config/Thunar/uca.xml
 
