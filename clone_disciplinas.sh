@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd git/
+git clone git@github.com:IgorAvilaPereira/scripts.git
 git clone git@github.com:IgorAvilaPereira/teste.git
 
 git clone git@github.com:IgorAvilaPereira/pbd2025_1sem.git
@@ -18,7 +19,7 @@ git clone git@github.com:IgorAvilaPereira/ppp2025_1sem.wiki.git
 git clone git@github.com:IgorAvilaPereira/pmbd2025_1sem.git
 git clone git@github.com:IgorAvilaPereira/pmbd2025_1sem.wiki.git
 
-cp /teste/nova_aula.sh pbd2025_1sem/
+cp teste/nova_aula.sh pbd2025_1sem/
 cp teste/atualizar.sh pbd2025_1sem/
 cd pbd2025_1sem/
 git add * 
