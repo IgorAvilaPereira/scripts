@@ -24,7 +24,7 @@ O repositório está organizado da seguinte forma:
 * **`headset.sh`**: Configurações para fones de ouvido.
 * **`install-pgadmin4.sh`**: Instalação do pgAdmin 4.
 * **`nova_aula.sh`**: Criação de estrutura para novas aulas.
-* **`pdfannots.sh`**: Anotações em arquivos PDF.([greasyfork.org][1], [igoravilapereira.github.io][2])
+* **`pdfannots.sh`**: Anotações em arquivos PDF.
 
 ## 🚀 Como usar
 
