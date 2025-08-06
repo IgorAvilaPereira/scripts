@@ -25,6 +25,8 @@ O repositório está organizado da seguinte forma:
 * **`install-pgadmin4.sh`**: Instalação do pgAdmin 4.
 * **`nova_aula.sh`**: Criação de estrutura para novas aulas.
 * **`pdfannots.sh`**: Anotações em arquivos PDF.
+* **gerar_portifolio_markdown.sh** e **gerar_portifolio_html.sh**: pega imagens com nome no formato <descricao>_<preco>.jpg ou .png e gera um arquivo.html de um portifólio de vendas
+
 
 ## 🚀 Como usar
 
