@@ -6,10 +6,7 @@ Este repositório contém uma coleção de scripts desenvolvidos para facilitar 
 
 O repositório está organizado da seguinte forma:
 
-* **`atualizar.sh`**: Script para atualizar o sistema e pacotes instalados.
-* **`brave.sh`**: Instalação do navegador Brave.
 * **`cat_with_namefile.sh`**: Exibe o conteúdo de arquivos com seus respectivos nomes.
-* **`clone_disciplinas.sh`**: Clona repositórios de disciplinas específicas.
 * **`commit_git.sh`**: Automatiza commits no Git.
 * **`compactar_diretorios.sh`**: Compacta diretórios selecionados.
 * **`cp_photo.sh`**: Copia fotos para diretórios específicos.
@@ -17,14 +14,10 @@ O repositório está organizado da seguinte forma:
 * **`dia_diagram_to_png.sh`**: Converte diagramas do Dia para o formato PNG.
 * **`driver-video.sh`**: Instala drivers de vídeo.
 * **`dump_postgresql.sh`**: Realiza backup de bancos de dados PostgreSQL.
-* **`embuti_legenda.sh`**: Incorpora legendas em vídeos.
-* **`emby.sh`**: Instalação e configuração do servidor de mídia Emby.
 * **`encontrar_palavra_em_arquivos_de_um_diretorio.sh`**: Busca por palavras-chave em arquivos dentro de um diretório.
 * **`git_https_to_ssh.md`**: Guia para configurar repositórios Git de HTTPS para SSH.
 * **`headset.sh`**: Configurações para fones de ouvido.
-* **`install-pgadmin4.sh`**: Instalação do pgAdmin 4.
-* **`nova_aula.sh`**: Criação de estrutura para novas aulas.
-* **`pdfannots.sh`**: Anotações em arquivos PDF.
+
 
 ## 🚀 Como usar
 
