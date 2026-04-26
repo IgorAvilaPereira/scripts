@@ -105,6 +105,7 @@ menu_multimidia() {
         --column="Ação" \
         "Split vídeo" \
         "Stereo → Mono" \
+        "Embutir legenda" \
         "Voltar"
 }
 
@@ -194,19 +195,42 @@ while true; do
             ACAO=$(menu_postgres)
             case "$ACAO" in
                 "Dump banco")
-#                    DB=$(entrada_texto "Banco" "Nome do banco:")
-#                    USER=$(entrada_texto "Usuário" "Usuário:")
-#                    if [ -n "$DB" ] && [ -n "$USER" ]; then
                         executar_script "bash \"$BASE_DIR/dump_postgresql.sh\" \"$DB\" \"$USER\""
-#                    fi
                     ;;
             esac
             ;;
 
         "Multimídia")
             ACAO=$(menu_multimidia)
-            case "$ACAO" in
+            case "$ACAO" in            
+                "Embutir legenda")
+                        VIDEO=$(zenity --file-selection \
+                            --title="Selecione o vídeo" \
+                            --file-filter="Vídeos | *.mp4 *.mkv *.avi *.mov")
 
+                        [ -z "$VIDEO" ] && continue
+
+                        LEGENDA=$(zenity --file-selection \
+                            --title="Selecione a legenda" \
+                            --file-filter="Legendas | *.srt *.ass")
+
+                        [ -z "$LEGENDA" ] && continue
+
+                        OUT="$(dirname "$VIDEO")/$(basename "$VIDEO" | sed 's/\.[^.]*$/_legenda.mkv/')"
+
+                        executar_script "
+                            ffmpeg -i \"$VIDEO\" -i \"$LEGENDA\" \
+                            -c copy -c:s srt \
+                            \"$OUT\" -y
+                        "
+
+                        log "ffmpeg legenda: $VIDEO + $LEGENDA"
+
+                        zenity --info \
+                            --title="Concluído" \
+                            --text="Arquivo gerado:\n$OUT"
+                        ;;
+                        
                 "Split vídeo")
                     FILE=$(zenity --file-selection \
                         --title="Selecione o vídeo" \
