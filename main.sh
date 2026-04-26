@@ -5,6 +5,7 @@ sudo apt install gpac -y
 sudo apt install plantuml -y
 sudo apt install ffmpeg -y
 sudo apt install dia -y
+sudo apt install default-jre -y
 
 APP_NAME="Central de Automação"
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -78,7 +79,8 @@ menu_arquivos() {
         "Renomear" \
         "Compactar" \
         "Imagens → PDF" \
-        "PlantUML → PNG" \
+      "PlantUML → PNG" \
+"PlantUML → SVG" \
         "DIA → PNG" \
         "Voltar" \
         --height=500 --width=400
@@ -165,7 +167,21 @@ while true; do
                             --text="Diagramas PlantUML convertidos no diretório."
                     fi
                     ;;
-
+                
+                # -------- PLANTUML SVG --------
+                "PlantUML → SVG")
+                    DIR=$(selecionar_diretorio "Selecione o diretório com arquivos PlantUML")
+                    if [ -n "$DIR" ]; then
+                        executar_script "
+                        find \"$DIR\" -type f \( -iname \"*.plant\" -o -iname \"*.puml\" \) | while read -r f; do
+                            plantuml -tsvg \"\$f\"
+                        done
+                        "
+                        zenity --info \
+                            --title="Concluído" \
+                            --text="Diagramas PlantUML convertidos para SVG."
+                    fi
+                    ;;
                 # -------- DIA --------
                 "DIA → PNG")
                     DIR=$(selecionar_diretorio "Selecione o diretório com arquivos DIA")
