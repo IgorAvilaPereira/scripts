@@ -230,7 +230,7 @@ while true; do
                             \"$OUT\" -y
                         "
 
-                        log "ffmpeg legenda: $VIDEO + $LEGENDA"
+#                        log "ffmpeg legenda: $VIDEO + $LEGENDA"
 
                         zenity --info \
                             --title="Concluído" \
@@ -264,7 +264,7 @@ while true; do
                         OUTPUT=$(ffmpeg -i "$FILE" -vcodec copy -ac 1 \
                             "$(dirname "$FILE")/$(basename "$FILE" | sed 's/\.[^.]*$/_mono.mp4/')" -y 2>&1)
 
-                        log "ffmpeg mono: $FILE"
+#                        log "ffmpeg mono: $FILE"
 
                         zenity --info \
                             --title="Concluído" \
