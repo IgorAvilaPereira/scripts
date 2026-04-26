@@ -67,7 +67,7 @@ menu_principal() {
         "Sistema" \
         "Logs" \
         "Sair" \
-        --height=400 --width=300
+        --height=500 --width=400
 }
 
 menu_arquivos() {
@@ -79,7 +79,8 @@ menu_arquivos() {
         "Imagens → PDF" \
         "PlantUML → PNG" \
         "DIA → PNG" \
-        "Voltar"
+        "Voltar" \
+        --height=500 --width=400
 }
 
 menu_git() {
@@ -88,7 +89,8 @@ menu_git() {
         --column="Ação" \
         "Commit" \
         "Update" \
-        "Voltar"
+        "Voltar" \
+        --height=500 --width=400
 }
 
 menu_postgres() {
@@ -96,7 +98,8 @@ menu_postgres() {
         --title="PostgreSQL" \
         --column="Ação" \
         "Dump banco" \
-        "Voltar"
+        "Voltar" \
+        --height=500 --width=400
 }
 
 menu_multimidia() {
@@ -106,8 +109,9 @@ menu_multimidia() {
         "Split vídeo" \
         "Stereo → Mono" \
         "Embutir legenda" \
-        "Voltar"
-}
+        "Voltar" \
+        --height=500 --width=400
+} 
 
 menu_sistema() {
     zenity --list \
@@ -115,7 +119,8 @@ menu_sistema() {
         --column="Ação" \
         "Resetar áudio" \
         "Parar serviços" \
-        "Voltar"
+        "Voltar" \
+        --height=500 --width=400
 }
 
 # ---------- LOOP PRINCIPAL ----------
