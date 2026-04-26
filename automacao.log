@@ -4,3 +4,8 @@
 2026-04-26 15:44:51 - bash "/home/iapereira/git/scripts/imagens_do_diretorio_para_pdf.sh" "/home/iapereira/Pictures"
 2026-04-26 15:46:45 - bash "/home/iapereira/git/scripts/imagens_do_diretorio_para_pdf.sh" "/home/iapereira/Pictures"
 2026-04-26 15:49:28 - ffmpeg mono: /home/iapereira/Desktop/output_video_clean.mp4
+2026-04-26 15:52:47 - 
+                        find "/home/iapereira/git/pmbd2026_1sem/08_exercicios" -type f -iname "*.dia" | while read -r f; do
+                            dia "$f" --export="${f%.dia}.png" --filter=png
+                        done
+                        

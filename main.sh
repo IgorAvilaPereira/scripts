@@ -27,12 +27,12 @@ executar_script() {
         --percentage=0 \
         --auto-close
 
-    log "$CMD"
+#    log "$CMD"
 
-    zenity --text-info \
-        --title="Resultado" \
-        --width=700 --height=400 \
-        --filename=<(echo "$OUTPUT")
+#    zenity --text-info \
+#        --title="Resultado" \
+#        --width=700 --height=400 \
+#        --filename=<(echo "$OUTPUT")
 }
 
 selecionar_diretorio() {
