@@ -1,6 +1,0 @@
-2026-04-26 14:52:20 - ffmpeg mono: /home/iapereira/Desktop/2026-04-26 00-24-43.mp4
-2026-04-26 15:24:08 - bash /home/iapereira/git/scripts/splitVideo.sh "/home/iapereira/Desktop/2026-04-26 00-24-43_high.mp4"
-2026-04-26 15:27:49 - bash "/home/iapereira/git/scripts/splitVideo.sh" "/home/iapereira/Desktop/2026-04-26 00-24-43_high.mp4" "30"
-2026-04-26 15:28:22 - bash "/home/iapereira/git/scripts/splitVideo.sh" "/home/iapereira/Desktop/2026-04-26 00-24-43_high.mp4" "15"
-2026-04-26 15:30:22 - bash "/home/iapereira/git/scripts/splitVideo.sh" "/home/iapereira/Desktop/2026-04-26 00-24-43_high.mp4" "10"
-2026-04-26 15:34:09 - bash "/home/iapereira/git/scripts/splitVideo.sh" "/home/iapereira/Desktop/output_video_clean.mp4" "15"
