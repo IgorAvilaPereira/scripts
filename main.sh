@@ -61,11 +61,11 @@ menu_principal() {
         --text="Escolha uma categoria:" \
         --column="Categoria" \
         "Arquivos" \
-        "Git" \
         "PostgreSQL" \
         "Multimídia" \
         "Sair" \
         --height=500 --width=400
+#        "Git" \
 #        "Sistema" \
 #        "Logs" \
 
@@ -184,18 +184,18 @@ while true; do
             esac
             ;;
 
-        "Git")
-            ACAO=$(menu_git)
-            case "$ACAO" in
-                "Commit")
-                    MSG=$(entrada_texto "Commit" "Mensagem:")
-                    [ -n "$MSG" ] && executar_script "bash \"$BASE_DIR/commit_git.sh\" \"$MSG\""
-                    ;;
-                "Update")
-                    executar_script "bash \"$BASE_DIR/update_git.sh\""
-                    ;;
-            esac
-            ;;
+#        "Git")
+#            ACAO=$(menu_git)
+#            case "$ACAO" in
+#                "Commit")
+#                    MSG=$(entrada_texto "Commit" "Mensagem:")
+#                    [ -n "$MSG" ] && executar_script "bash \"$BASE_DIR/commit_git.sh\" \"$MSG\""
+#                    ;;
+#                "Update")
+#                    executar_script "bash \"$BASE_DIR/update_git.sh\""
+#                    ;;
+#            esac
+#            ;;
 
         "PostgreSQL")
             ACAO=$(menu_postgres)
