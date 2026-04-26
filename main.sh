@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APP_NAME="Central de Automação"
-BASE_DIR="$(dirname "$0")"
+BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG_FILE="$BASE_DIR/automacao.log"
 
 # ---------- FUNÇÕES ----------
@@ -122,15 +122,15 @@ while true; do
             case "$ACAO" in
                 "Renomear")
                     DIR=$(selecionar_diretorio "Selecione o diretório")
-                    [ -n "$DIR" ] && executar_script "bash $BASE_DIR/renomear.sh \"$DIR\""
+                    [ -n "$DIR" ] && executar_script "bash \"$BASE_DIR/renomear.sh\" \"$DIR\""
                     ;;
                 "Compactar")
                     DIR=$(selecionar_diretorio "Selecione o diretório")
-                    [ -n "$DIR" ] && executar_script "bash $BASE_DIR/compactar_diretorios.sh \"$DIR\""
+                    [ -n "$DIR" ] && executar_script "bash \"$BASE_DIR/compactar_diretorios.sh\" \"$DIR\""
                     ;;
                 "Imagens → PDF")
                     DIR=$(selecionar_diretorio "Selecione imagens")
-                    [ -n "$DIR" ] && executar_script "bash $BASE_DIR/imagens_do_diretorio_para_pdf.sh \"$DIR\""
+                    [ -n "$DIR" ] && executar_script "bash \"$BASE_DIR/imagens_do_diretorio_para_pdf.sh\" \"$DIR\""
                     ;;
             esac
             ;;
@@ -140,10 +140,10 @@ while true; do
             case "$ACAO" in
                 "Commit")
                     MSG=$(entrada_texto "Commit" "Mensagem:")
-                    [ -n "$MSG" ] && executar_script "bash $BASE_DIR/commit_git.sh \"$MSG\""
+                    [ -n "$MSG" ] && executar_script "bash \"$BASE_DIR/commit_git.sh\" \"$MSG\""
                     ;;
                 "Update")
-                    executar_script "bash $BASE_DIR/update_git.sh"
+                    executar_script "bash \"$BASE_DIR/update_git.sh\""
                     ;;
             esac
             ;;
@@ -155,7 +155,7 @@ while true; do
                     DB=$(entrada_texto "Banco" "Nome do banco:")
                     USER=$(entrada_texto "Usuário" "Usuário:")
                     if [ -n "$DB" ] && [ -n "$USER" ]; then
-                        executar_script "bash $BASE_DIR/dump_postgresql.sh \"$DB\" \"$USER\""
+                        executar_script "bash \"$BASE_DIR/dump_postgresql.sh\" \"$DB\" \"$USER\""
                     fi
                     ;;
             esac
@@ -166,8 +166,18 @@ while true; do
             case "$ACAO" in
 
                 "Split vídeo")
-                    FILE=$(selecionar_arquivo "Selecione o vídeo")
-                    [ -n "$FILE" ] && executar_script "bash $BASE_DIR/splitVideo.sh \"$FILE\""
+                    FILE=$(zenity --file-selection \
+                        --title="Selecione o vídeo" \
+                        --file-filter="Vídeos | *.mp4 *.mkv *.avi *.mov")
+
+                    [ -z "$FILE" ] && continue
+
+                    TEMPO=$(entrada_texto "Split" "Intervalo em segundos (ex: 15):")
+                    [ -z "$TEMPO" ] && continue
+
+                    executar_script "bash \"$BASE_DIR/splitVideo.sh\" \"$FILE\" \"$TEMPO\""
+#                    sudo apt install gpac
+#                    MP4Box -split $TEMPO $FILE
                     ;;
 
                 "Stereo → Mono")
@@ -212,10 +222,10 @@ while true; do
             ACAO=$(menu_sistema)
             case "$ACAO" in
                 "Resetar áudio")
-                    executar_script "bash $BASE_DIR/resetar_audio.sh"
+                    executar_script "bash \"$BASE_DIR/resetar_audio.sh\""
                     ;;
                 "Parar serviços")
-                    executar_script "bash $BASE_DIR/stop-services-vostro.sh"
+                    executar_script "bash \"$BASE_DIR/stop-services-vostro.sh\""
                     ;;
             esac
             ;;
