@@ -207,11 +207,15 @@ while true; do
                             --auto-close
 
                         log "ffmpeg mono: $FILE"
+                        
+                        zenity --info \
+  --title="Conversão concluída" \
+  --text="$(dirname "$FILE")/$(basename "$FILE" | sed 's/\.[^.]*$/_mono.mp4/')"
 
-                        zenity --text-info \
-                            --title="Resultado" \
-                            --width=700 --height=400 \
-                            --filename=<(echo "$OUTPUT")
+#                        zenity --text-info \
+#                            --title="Resultado" \
+#                            --width=700 --height=400 \
+#                            --filename=<(echo "$OUTPUT")
                     fi
                     ;;
 
