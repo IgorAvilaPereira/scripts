@@ -194,11 +194,11 @@ while true; do
             ACAO=$(menu_postgres)
             case "$ACAO" in
                 "Dump banco")
-                    DB=$(entrada_texto "Banco" "Nome do banco:")
-                    USER=$(entrada_texto "Usuário" "Usuário:")
-                    if [ -n "$DB" ] && [ -n "$USER" ]; then
+#                    DB=$(entrada_texto "Banco" "Nome do banco:")
+#                    USER=$(entrada_texto "Usuário" "Usuário:")
+#                    if [ -n "$DB" ] && [ -n "$USER" ]; then
                         executar_script "bash \"$BASE_DIR/dump_postgresql.sh\" \"$DB\" \"$USER\""
-                    fi
+#                    fi
                     ;;
             esac
             ;;
