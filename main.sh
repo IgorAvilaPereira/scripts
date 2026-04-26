@@ -1,5 +1,11 @@
 #!/bin/bash
 
+sudo apt install img2pdf -y
+sudo apt install gpac -y
+sudo apt install plantuml -y
+sudo apt install ffmpeg -y
+sudo apt install dia -y
+
 APP_NAME="Central de Automação"
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG_FILE="$BASE_DIR/automacao.log"
@@ -245,9 +251,9 @@ while true; do
                 "Resetar áudio")
                     executar_script "bash \"$BASE_DIR/resetar_audio.sh\""
                     ;;
-                "Parar serviços")
-                    executar_script "bash \"$BASE_DIR/stop-services-vostro.sh\""
-                    ;;
+#                "Parar serviços")
+#                    executar_script "bash \"$BASE_DIR/stop-services-vostro.sh\""
+#                    ;;
             esac
             ;;
 
