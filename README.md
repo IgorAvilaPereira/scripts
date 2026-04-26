@@ -1,58 +1,102 @@
-# Scripts úteis para Linux
+# 🛠️ Scripts de Automação
 
-Este repositório contém uma coleção de scripts desenvolvidos para facilitar tarefas cotidianas em sistemas Linux. Os scripts abordam desde automações simples até configurações mais específicas, visando otimizar o fluxo de trabalho.
+Coleção de scripts úteis para automação de tarefas no dia a dia (Linux), incluindo operações com arquivos, Git, banco de dados, multimídia e ambiente de desenvolvimento.
 
-## 📁 Estrutura do repositório
+---
 
-O repositório está organizado da seguinte forma:
+## 📂 Estrutura
 
-* **`cat_with_namefile.sh`**: Exibe o conteúdo de arquivos com seus respectivos nomes.
-* **`commit_git.sh`**: Automatiza commits no Git.
-* **`compactar_diretorios.sh`**: Compacta diretórios selecionados.
-* **`cp_photo.sh`**: Copia fotos para diretórios específicos.
-* **`create_folder.py`**: Criação de pastas com base em parâmetros fornecidos.
-* **`dia_diagram_to_png.sh`**: Converte diagramas do Dia para o formato PNG.
-* **`driver-video.sh`**: Instala drivers de vídeo.
-* **`dump_postgresql.sh`**: Realiza backup de bancos de dados PostgreSQL.
-* **`encontrar_palavra_em_arquivos_de_um_diretorio.sh`**: Busca por palavras-chave em arquivos dentro de um diretório.
-* **`git_https_to_ssh.md`**: Guia para configurar repositórios Git de HTTPS para SSH.
-* **`headset.sh`**: Configurações para fones de ouvido.
+### 🔧 Utilidades Gerais
 
+* `renomear.sh` → renomeação em lote
+* `compactar_diretorios.sh` → compacta diretórios
+* `imagens_do_diretorio_para_pdf.sh` → converte imagens em PDF
+* `troca_palavras_de_um_diretorio.sh` → substituição de texto em múltiplos arquivos
+* `encontrar_palavra_em_arquivos_de_um diretorio.sh` → busca por palavra em arquivos
+* `cat_with_namefile.sh` → exibe conteúdo com nome do arquivo
+
+---
+
+### 🧠 Git
+
+* `commit_git.sh` → automatiza commits
+* `update_git.sh` → atualização de repositórios
+* `git_https_to_ssh.md` → guia para troca de HTTPS para SSH
+
+---
+
+### 🐘 PostgreSQL
+
+* `dump_postgresql.sh` → backup de banco
+* `install-pgadmin4.sh` → instalação do pgAdmin
+* `pgadmin4_install_linux_mint.sh` → instalação no Linux Mint
+* `setup-flask-psycopg.sh` → ambiente Flask + PostgreSQL
+
+---
+
+### 🎬 Multimídia
+
+* `splitVideo.sh` → divide vídeos
+* `stereo_video_to_mono.sh` → converte áudio estéreo para mono
+* `embuti_legenda.sh` → embute legendas
+* `dia_diagram_to_png.sh` → exporta diagramas para PNG
+
+---
+
+### 🖥️ Sistema / Hardware
+
+* `driver-video.sh` → configuração de driver de vídeo
+* `resetar_audio.sh` → reinicia áudio
+* `headset.sh` → configuração de headset
+* `headset_vostro3360.sh` → ajustes específicos (Dell Vostro 3360)
+* `stop-services-vostro.sh` → parar serviços específicos
+
+---
+
+### 📦 Outros
+
+* `create_folder.py` → criação automatizada de diretórios
+* `plantuml_exemplo.sh` → exemplo de uso do PlantUML
+* `pdfannots-app.sh` → integração com PDF annotations
+
+---
 
 ## 🚀 Como usar
 
-1. **Clonar o repositório**:
+1. Dê permissão de execução (caso necessário):
 
-   ```bash
-   git clone https://github.com/IgorAvilaPereira/scripts.git
-   cd scripts
-   ```
+```bash
+chmod +x nome_do_script.sh
+```
 
-2. **Tornar o script executável**:
+2. Execute:
 
-   ```bash
-   chmod +x nome_do_script.sh
-   ```
+```bash
+./nome_do_script.sh
+```
 
-3. **Executar o script**:
+---
 
-   ```bash
-   ./nome_do_script.sh
-   ```
+## ⚠️ Observações
 
-> ⚠️ **Atenção**: Antes de executar qualquer script, revise seu conteúdo para garantir que ele atende às suas necessidades e não cause efeitos indesejados no seu sistema.
+* Scripts foram desenvolvidos para ambientes Linux.
+* Alguns podem exigir dependências externas (ffmpeg, git, postgres, etc.).
+* Ajustes podem ser necessários conforme o sistema.
 
-## 🛠️ Como contribuir
+---
 
-Contribuições são bem-vindas! Para contribuir:
+## 📌 Objetivo
 
-1. Faça um fork deste repositório.
-2. Crie uma branch para sua modificação: `git checkout -b minha-modificacao`.
-3. Faça commit das suas alterações: `git commit -m 'Minha modificação'`.
-4. Envie para o seu fork: `git push origin minha-modificacao`.
-5. Abra um Pull Request.
+Centralizar scripts reutilizáveis para:
 
-## 📄 Licença
+* produtividade
+* automação de tarefas repetitivas
+* padronização de ambientes
 
-Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para mais detalhes.
+---
+
+## 🤝 Contribuições
+
+Sinta-se à vontade para sugerir melhorias ou adicionar novos scripts.
+
 
