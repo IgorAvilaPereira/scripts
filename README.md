@@ -1,102 +1,96 @@
-# 🛠️ Scripts de Automação
+# Central de Automação
 
-Coleção de scripts úteis para automação de tarefas no dia a dia (Linux), incluindo operações com arquivos, Git, banco de dados, multimídia e ambiente de desenvolvimento.
+## 📌 Visão Geral
 
----
-
-## 📂 Estrutura
-
-### 🔧 Utilidades Gerais
-
-* `renomear.sh` → renomeação em lote
-* `compactar_diretorios.sh` → compacta diretórios
-* `imagens_do_diretorio_para_pdf.sh` → converte imagens em PDF
-* `troca_palavras_de_um_diretorio.sh` → substituição de texto em múltiplos arquivos
-* `encontrar_palavra_em_arquivos_de_um diretorio.sh` → busca por palavra em arquivos
-* `cat_with_namefile.sh` → exibe conteúdo com nome do arquivo
+Este repositório reúne uma coleção de scripts utilitários para automação de tarefas comuns no dia a dia, incluindo manipulação de arquivos, processamento multimídia, integração com Git e operações com banco de dados.
 
 ---
 
-### 🧠 Git
+## 🖥️ Interface Gráfica
 
-* `commit_git.sh` → automatiza commits
-* `update_git.sh` → atualização de repositórios
-* `git_https_to_ssh.md` → guia para troca de HTTPS para SSH
+O arquivo `main.sh` funciona como o **ambiente gráfico principal** do projeto.
 
----
+Ele centraliza o acesso à maioria dos scripts disponíveis, permitindo executar todas as funcionalidades por meio de uma interface simples e intuitiva.
 
-### 🐘 PostgreSQL
+A interface foi desenvolvida utilizando o Zenity, o que garante:
 
-* `dump_postgresql.sh` → backup de banco
-* `install-pgadmin4.sh` → instalação do pgAdmin
-* `pgadmin4_install_linux_mint.sh` → instalação no Linux Mint
-* `setup-flask-psycopg.sh` → ambiente Flask + PostgreSQL
+* Compatibilidade com a **maioria das distribuições Linux**
+* Facilidade de uso sem necessidade de terminal
+* Integração com ambientes gráficos baseados em GTK
 
 ---
+
+## ⚙️ Funcionalidades Disponíveis
+
+### 📁 Arquivos
+
+* Renomear arquivos em lote
+* Compactar diretórios
+* Converter imagens em PDF
+* Converter diagramas:
+
+  * PlantUML → PNG
+  * DIA → PNG
 
 ### 🎬 Multimídia
 
-* `splitVideo.sh` → divide vídeos
-* `stereo_video_to_mono.sh` → converte áudio estéreo para mono
-* `embuti_legenda.sh` → embute legendas
-* `dia_diagram_to_png.sh` → exporta diagramas para PNG
+* Dividir vídeos em partes (via MP4Box)
+* Converter áudio estéreo para mono (via FFmpeg)
+* Embutir legendas em vídeos
+
+### 🗄️ Banco de Dados
+
+* Dump de banco PostgreSQL
+
+### 🔧 Sistema
+
+* Reset de áudio
+* Execução de scripts administrativos
+
+### 🌐 Git
+
+* Commit com mensagem personalizada
+* Atualização de repositórios
 
 ---
 
-### 🖥️ Sistema / Hardware
+## 📦 Dependências
 
-* `driver-video.sh` → configuração de driver de vídeo
-* `resetar_audio.sh` → reinicia áudio
-* `headset.sh` → configuração de headset
-* `headset_vostro3360.sh` → ajustes específicos (Dell Vostro 3360)
-* `stop-services-vostro.sh` → parar serviços específicos
+As principais dependências são:
 
----
+* Zenity
+* FFmpeg
+* MP4Box
+* PlantUML
+* Dia
+* `img2pdf`
 
-### 📦 Outros
-
-* `create_folder.py` → criação automatizada de diretórios
-* `plantuml_exemplo.sh` → exemplo de uso do PlantUML
-* `pdfannots-app.sh` → integração com PDF annotations
-
----
-
-## 🚀 Como usar
-
-1. Dê permissão de execução (caso necessário):
+Instalação (Debian/Ubuntu):
 
 ```bash
-chmod +x nome_do_script.sh
+sudo apt install zenity ffmpeg gpac plantuml dia img2pdf
 ```
 
-2. Execute:
+---
+
+## ▶️ Como Executar
 
 ```bash
-./nome_do_script.sh
+chmod +x main.sh
+./main.sh
 ```
 
 ---
 
-## ⚠️ Observações
+## 💡 Observações
 
-* Scripts foram desenvolvidos para ambientes Linux.
-* Alguns podem exigir dependências externas (ffmpeg, git, postgres, etc.).
-* Ajustes podem ser necessários conforme o sistema.
-
----
-
-## 📌 Objetivo
-
-Centralizar scripts reutilizáveis para:
-
-* produtividade
-* automação de tarefas repetitivas
-* padronização de ambientes
+* O projeto foi pensado para uso em ambientes Linux com interface gráfica
+* A utilização do Zenity elimina a necessidade de interfaces mais complexas
+* Scripts individuais também podem ser executados separadamente, se desejado
 
 ---
 
-## 🤝 Contribuições
+## 🚀 Objetivo
 
-Sinta-se à vontade para sugerir melhorias ou adicionar novos scripts.
-
+Fornecer uma central simples, prática e extensível para automação de tarefas comuns, com foco em produtividade e facilidade de uso.
 
