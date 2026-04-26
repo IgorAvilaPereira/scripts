@@ -71,6 +71,8 @@ menu_arquivos() {
         "Renomear" \
         "Compactar" \
         "Imagens → PDF" \
+        "PlantUML → PNG" \
+        "DIA → PNG" \
         "Voltar"
 }
 
@@ -120,18 +122,52 @@ while true; do
         "Arquivos")
             ACAO=$(menu_arquivos)
             case "$ACAO" in
+
                 "Renomear")
                     DIR=$(selecionar_diretorio "Selecione o diretório")
                     [ -n "$DIR" ] && executar_script "bash \"$BASE_DIR/renomear.sh\" \"$DIR\""
                     ;;
+
                 "Compactar")
                     DIR=$(selecionar_diretorio "Selecione o diretório")
                     [ -n "$DIR" ] && executar_script "bash \"$BASE_DIR/compactar_diretorios.sh\" \"$DIR\""
                     ;;
+
                 "Imagens → PDF")
                     DIR=$(selecionar_diretorio "Selecione imagens")
                     [ -n "$DIR" ] && executar_script "bash \"$BASE_DIR/imagens_do_diretorio_para_pdf.sh\" \"$DIR\""
                     ;;
+
+                # -------- PLANTUML --------
+                "PlantUML → PNG")
+                    DIR=$(selecionar_diretorio "Selecione o diretório com arquivos PlantUML")
+                    if [ -n "$DIR" ]; then
+                        executar_script "
+                        find \"$DIR\" -type f \( -iname \"*.plant\" -o -iname \"*.puml\" \) | while read -r f; do
+                            plantuml -tpng \"\$f\"
+                        done
+                        "
+                        zenity --info \
+                            --title="Concluído" \
+                            --text="Diagramas PlantUML convertidos no diretório."
+                    fi
+                    ;;
+
+                # -------- DIA --------
+                "DIA → PNG")
+                    DIR=$(selecionar_diretorio "Selecione o diretório com arquivos DIA")
+                    if [ -n "$DIR" ]; then
+                        executar_script "
+                        find \"$DIR\" -type f -iname \"*.dia\" | while read -r f; do
+                            dia \"\$f\" --export=\"\${f%.dia}.png\" --filter=png
+                        done
+                        "
+                        zenity --info \
+                            --title="Concluído" \
+                            --text="Diagramas DIA convertidos no diretório."
+                    fi
+                    ;;
+
             esac
             ;;
 
@@ -176,8 +212,6 @@ while true; do
                     [ -z "$TEMPO" ] && continue
 
                     executar_script "bash \"$BASE_DIR/splitVideo.sh\" \"$FILE\" \"$TEMPO\""
-#                    sudo apt install gpac
-#                    MP4Box -split $TEMPO $FILE
                     ;;
 
                 "Stereo → Mono")
@@ -188,34 +222,17 @@ while true; do
                     [ -z "$FILE" ] && continue
 
                     zenity --question \
-                        --title="Confirmação" \
-                        --text="Converter este vídeo para mono?\n\n$(basename "$FILE")"
+                        --text="Converter para mono?\n\n$(basename "$FILE")"
 
                     if [ $? -eq 0 ]; then
-                        (
-                            echo "10"; sleep 0.3
-                            echo "# Convertendo áudio para mono..."
-
-                            OUTPUT=$(ffmpeg -i "$FILE" -vcodec copy -ac 1 \
-                                "$(dirname "$FILE")/$(basename "$FILE" | sed 's/\.[^.]*$/_mono.mp4/')" -y 2>&1)
-
-                            echo "100"
-                        ) | zenity --progress \
-                            --title="$APP_NAME" \
-                            --text="Processando vídeo..." \
-                            --percentage=0 \
-                            --auto-close
+                        OUTPUT=$(ffmpeg -i "$FILE" -vcodec copy -ac 1 \
+                            "$(dirname "$FILE")/$(basename "$FILE" | sed 's/\.[^.]*$/_mono.mp4/')" -y 2>&1)
 
                         log "ffmpeg mono: $FILE"
-                        
-                        zenity --info \
-  --title="Conversão concluída" \
-  --text="$(dirname "$FILE")/$(basename "$FILE" | sed 's/\.[^.]*$/_mono.mp4/')"
 
-#                        zenity --text-info \
-#                            --title="Resultado" \
-#                            --width=700 --height=400 \
-#                            --filename=<(echo "$OUTPUT")
+                        zenity --info \
+                            --title="Concluído" \
+                            --text="$(dirname "$FILE")/$(basename "$FILE" | sed 's/\.[^.]*$/_mono.mp4/')"
                     fi
                     ;;
 
@@ -236,7 +253,6 @@ while true; do
 
         "Logs")
             zenity --text-info \
-                --title="Logs" \
                 --width=700 --height=400 \
                 --filename="$LOG_FILE"
             ;;
