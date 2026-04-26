@@ -164,14 +164,47 @@ while true; do
         "Multimídia")
             ACAO=$(menu_multimidia)
             case "$ACAO" in
+
                 "Split vídeo")
                     FILE=$(selecionar_arquivo "Selecione o vídeo")
                     [ -n "$FILE" ] && executar_script "bash $BASE_DIR/splitVideo.sh \"$FILE\""
                     ;;
+
                 "Stereo → Mono")
-                    FILE=$(selecionar_arquivo "Selecione o vídeo")
-                    [ -n "$FILE" ] && executar_script "bash $BASE_DIR/stereo_video_to_mono.sh \"$FILE\""
+                    FILE=$(zenity --file-selection \
+                        --title="Selecione um vídeo com áudio estéreo" \
+                        --file-filter="Vídeos | *.mp4 *.mkv *.avi *.mov")
+
+                    [ -z "$FILE" ] && continue
+
+                    zenity --question \
+                        --title="Confirmação" \
+                        --text="Converter este vídeo para mono?\n\n$(basename "$FILE")"
+
+                    if [ $? -eq 0 ]; then
+                        (
+                            echo "10"; sleep 0.3
+                            echo "# Convertendo áudio para mono..."
+
+                            OUTPUT=$(ffmpeg -i "$FILE" -vcodec copy -ac 1 \
+                                "$(dirname "$FILE")/$(basename "$FILE" | sed 's/\.[^.]*$/_mono.mp4/')" -y 2>&1)
+
+                            echo "100"
+                        ) | zenity --progress \
+                            --title="$APP_NAME" \
+                            --text="Processando vídeo..." \
+                            --percentage=0 \
+                            --auto-close
+
+                        log "ffmpeg mono: $FILE"
+
+                        zenity --text-info \
+                            --title="Resultado" \
+                            --width=700 --height=400 \
+                            --filename=<(echo "$OUTPUT")
+                    fi
                     ;;
+
             esac
             ;;
 
