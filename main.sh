@@ -64,10 +64,11 @@ menu_principal() {
         "Git" \
         "PostgreSQL" \
         "Multimídia" \
-        "Sistema" \
-        "Logs" \
         "Sair" \
         --height=500 --width=400
+#        "Sistema" \
+#        "Logs" \
+
 }
 
 menu_arquivos() {
@@ -274,24 +275,24 @@ while true; do
             esac
             ;;
 
-        "Sistema")
-            ACAO=$(menu_sistema)
-            case "$ACAO" in
-                "Resetar áudio")
-                    executar_script "bash \"$BASE_DIR/resetar_audio.sh\""
-                    ;;
+#        "Sistema")
+#            ACAO=$(menu_sistema)
+#            case "$ACAO" in
+#                "Resetar áudio")
+#                    executar_script "bash \"$BASE_DIR/resetar_audio.sh\""
+#                    ;;
 #                "Parar serviços")
 #                    executar_script "bash \"$BASE_DIR/stop-services-vostro.sh\""
 #                    ;;
-            esac
-            ;;
-
-        "Logs")
-            zenity --text-info \
-                --width=700 --height=400 \
-                --filename="$LOG_FILE"
-            ;;
-
+#            esac
+#            ;;
+#
+#        "Logs")
+#            zenity --text-info \
+#                --width=700 --height=400 \
+#                --filename="$LOG_FILE"
+#            ;;
+#
         "Sair")
             break
             ;;
