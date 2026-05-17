@@ -1,3 +1,4 @@
+```bash
 #!/bin/bash
 
 sudo apt install img2pdf -y
@@ -33,13 +34,6 @@ executar_script() {
         --text="Executando script..." \
         --percentage=0 \
         --auto-close
-
-#    log "$CMD"
-
-#    zenity --text-info \
-#        --title="Resultado" \
-#        --width=700 --height=400 \
-#        --filename=<(echo "$OUTPUT")
 }
 
 selecionar_diretorio() {
@@ -64,12 +58,9 @@ menu_principal() {
         "Arquivos" \
         "PostgreSQL" \
         "Multimídia" \
+        "Sistema" \
         "Sair" \
         --height=500 --width=400
-#        "Git" \
-#        "Sistema" \
-#        "Logs" \
-
 }
 
 menu_arquivos() {
@@ -79,8 +70,8 @@ menu_arquivos() {
         "Renomear" \
         "Compactar" \
         "Imagens → PDF" \
-      "PlantUML → PNG" \
-"PlantUML → SVG" \
+        "PlantUML → PNG" \
+        "PlantUML → SVG" \
         "DIA → PNG" \
         "Voltar" \
         --height=500 --width=400
@@ -114,7 +105,7 @@ menu_multimidia() {
         "Embutir legenda" \
         "Voltar" \
         --height=500 --width=400
-} 
+}
 
 menu_sistema() {
     zenity --list \
@@ -122,6 +113,7 @@ menu_sistema() {
         --column="Ação" \
         "Resetar áudio" \
         "Parar serviços" \
+        "Permissões discos + Restart Jellyfin" \
         "Voltar" \
         --height=500 --width=400
 }
@@ -136,6 +128,7 @@ while true; do
 
         "Arquivos")
             ACAO=$(menu_arquivos)
+
             case "$ACAO" in
 
                 "Renomear")
@@ -153,44 +146,48 @@ while true; do
                     [ -n "$DIR" ] && executar_script "bash \"$BASE_DIR/imagens_do_diretorio_para_pdf.sh\" \"$DIR\""
                     ;;
 
-                # -------- PLANTUML --------
                 "PlantUML → PNG")
                     DIR=$(selecionar_diretorio "Selecione o diretório com arquivos PlantUML")
+
                     if [ -n "$DIR" ]; then
                         executar_script "
-                        find \"$DIR\" -type f \( -iname \"*.plant\" -o -iname \"*.puml\" \) | while read -r f; do
-                            plantuml -tpng \"\$f\"
-                        done
+                            find \"$DIR\" -type f \( -iname \"*.plant\" -o -iname \"*.puml\" \) | while read -r f; do
+                                plantuml -tpng \"\$f\"
+                            done
                         "
+
                         zenity --info \
                             --title="Concluído" \
                             --text="Diagramas PlantUML convertidos no diretório."
                     fi
                     ;;
-                
-                # -------- PLANTUML SVG --------
+
                 "PlantUML → SVG")
                     DIR=$(selecionar_diretorio "Selecione o diretório com arquivos PlantUML")
+
                     if [ -n "$DIR" ]; then
                         executar_script "
-                        find \"$DIR\" -type f \( -iname \"*.plant\" -o -iname \"*.puml\" \) | while read -r f; do
-                            plantuml -tsvg \"\$f\"
-                        done
+                            find \"$DIR\" -type f \( -iname \"*.plant\" -o -iname \"*.puml\" \) | while read -r f; do
+                                plantuml -tsvg \"\$f\"
+                            done
                         "
+
                         zenity --info \
                             --title="Concluído" \
                             --text="Diagramas PlantUML convertidos para SVG."
                     fi
                     ;;
-                # -------- DIA --------
+
                 "DIA → PNG")
                     DIR=$(selecionar_diretorio "Selecione o diretório com arquivos DIA")
+
                     if [ -n "$DIR" ]; then
                         executar_script "
-                        find \"$DIR\" -type f -iname \"*.dia\" | while read -r f; do
-                            dia \"\$f\" --export=\"\${f%.dia}.png\" --filter=png
-                        done
+                            find \"$DIR\" -type f -iname \"*.dia\" | while read -r f; do
+                                dia \"\$f\" --export=\"\${f%.dia}.png\" --filter=png
+                            done
                         "
+
                         zenity --info \
                             --title="Concluído" \
                             --text="Diagramas DIA convertidos no diretório."
@@ -200,59 +197,49 @@ while true; do
             esac
             ;;
 
-#        "Git")
-#            ACAO=$(menu_git)
-#            case "$ACAO" in
-#                "Commit")
-#                    MSG=$(entrada_texto "Commit" "Mensagem:")
-#                    [ -n "$MSG" ] && executar_script "bash \"$BASE_DIR/commit_git.sh\" \"$MSG\""
-#                    ;;
-#                "Update")
-#                    executar_script "bash \"$BASE_DIR/update_git.sh\""
-#                    ;;
-#            esac
-#            ;;
-
         "PostgreSQL")
             ACAO=$(menu_postgres)
+
             case "$ACAO" in
+
                 "Dump banco")
-                        executar_script "bash \"$BASE_DIR/dump_postgresql.sh\" \"$DB\" \"$USER\""
+                    executar_script "bash \"$BASE_DIR/dump_postgresql.sh\" \"$DB\" \"$USER\""
                     ;;
+
             esac
             ;;
 
         "Multimídia")
             ACAO=$(menu_multimidia)
-            case "$ACAO" in            
+
+            case "$ACAO" in
+
                 "Embutir legenda")
-                        VIDEO=$(zenity --file-selection \
-                            --title="Selecione o vídeo" \
-                            --file-filter="Vídeos | *.mp4 *.mkv *.avi *.mov")
+                    VIDEO=$(zenity --file-selection \
+                        --title="Selecione o vídeo" \
+                        --file-filter="Vídeos | *.mp4 *.mkv *.avi *.mov")
 
-                        [ -z "$VIDEO" ] && continue
+                    [ -z "$VIDEO" ] && continue
 
-                        LEGENDA=$(zenity --file-selection \
-                            --title="Selecione a legenda" \
-                            --file-filter="Legendas | *.srt *.ass")
+                    LEGENDA=$(zenity --file-selection \
+                        --title="Selecione a legenda" \
+                        --file-filter="Legendas | *.srt *.ass")
 
-                        [ -z "$LEGENDA" ] && continue
+                    [ -z "$LEGENDA" ] && continue
 
-                        OUT="$(dirname "$VIDEO")/$(basename "$VIDEO" | sed 's/\.[^.]*$/_legenda.mkv/')"
+                    OUT="$(dirname "$VIDEO")/$(basename "$VIDEO" | sed 's/\.[^.]*$/_legenda.mkv/')"
 
-                        executar_script "
-                            ffmpeg -i \"$VIDEO\" -i \"$LEGENDA\" \
-                            -c copy -c:s srt \
-                            \"$OUT\" -y
-                        "
+                    executar_script "
+                        ffmpeg -i \"$VIDEO\" -i \"$LEGENDA\" \
+                        -c copy -c:s srt \
+                        \"$OUT\" -y
+                    "
 
-#                        log "ffmpeg legenda: $VIDEO + $LEGENDA"
+                    zenity --info \
+                        --title="Concluído" \
+                        --text="Arquivo gerado:\n$OUT"
+                    ;;
 
-                        zenity --info \
-                            --title="Concluído" \
-                            --text="Arquivo gerado:\n$OUT"
-                        ;;
-                        
                 "Split vídeo")
                     FILE=$(zenity --file-selection \
                         --title="Selecione o vídeo" \
@@ -277,10 +264,9 @@ while true; do
                         --text="Converter para mono?\n\n$(basename "$FILE")"
 
                     if [ $? -eq 0 ]; then
-                        OUTPUT=$(ffmpeg -i "$FILE" -vcodec copy -ac 1 \
-                            "$(dirname "$FILE")/$(basename "$FILE" | sed 's/\.[^.]*$/_mono.mp4/')" -y 2>&1)
 
-#                        log "ffmpeg mono: $FILE"
+                        ffmpeg -i "$FILE" -vcodec copy -ac 1 \
+                            "$(dirname "$FILE")/$(basename "$FILE" | sed 's/\.[^.]*$/_mono.mp4/')" -y
 
                         zenity --info \
                             --title="Concluído" \
@@ -291,26 +277,46 @@ while true; do
             esac
             ;;
 
-#        "Sistema")
-#            ACAO=$(menu_sistema)
-#            case "$ACAO" in
-#                "Resetar áudio")
-#                    executar_script "bash \"$BASE_DIR/resetar_audio.sh\""
-#                    ;;
-#                "Parar serviços")
-#                    executar_script "bash \"$BASE_DIR/stop-services-vostro.sh\""
-#                    ;;
-#            esac
-#            ;;
-#
-#        "Logs")
-#            zenity --text-info \
-#                --width=700 --height=400 \
-#                --filename="$LOG_FILE"
-#            ;;
-#
+        "Sistema")
+            ACAO=$(menu_sistema)
+
+            case "$ACAO" in
+
+                "Resetar áudio")
+                    executar_script "bash \"$BASE_DIR/resetar_audio.sh\""
+                    ;;
+
+                "Parar serviços")
+                    executar_script "bash \"$BASE_DIR/stop-services-vostro.sh\""
+                    ;;
+
+                "Permissões discos + Restart Jellyfin")
+
+                    executar_script "
+                        sudo chmod 777 -R /media/iapereira/hd/
+                        sudo chmod 777 -R /media/iapereira/igor
+                        sudo chmod 777 -R /media/iapereira/IGOR_SSD_256GB/
+                        sudo chmod 777 -R /media/iapereira/hd_500gb/
+                        sudo chmod 777 -R /media/iapereira/igor_500gb/
+                        sudo chmod 777 -R /media/iapereira/USB\\ STICK/
+                        sudo chmod 777 -R /home/iapereira/emby/
+
+                        sudo systemctl stop jellyfin
+                        sudo systemctl start jellyfin
+                    "
+
+                    zenity --info \
+                        --title="Concluído" \
+                        --text="Permissões aplicadas e Jellyfin reiniciado."
+                    ;;
+
+            esac
+            ;;
+
         "Sair")
             break
             ;;
     esac
 done
+```
+
