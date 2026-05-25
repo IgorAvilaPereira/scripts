@@ -1,4 +1,3 @@
-```bash
 #!/bin/bash
 
 sudo apt install img2pdf -y
@@ -293,16 +292,16 @@ while true; do
                 "Permissões discos + Restart Jellyfin")
 
                     executar_script "
-                        sudo chmod 777 -R /media/iapereira/hd/
-                        sudo chmod 777 -R /media/iapereira/igor
-                        sudo chmod 777 -R /media/iapereira/IGOR_SSD_256GB/
-                        sudo chmod 777 -R /media/iapereira/hd_500gb/
-                        sudo chmod 777 -R /media/iapereira/igor_500gb/
-                        sudo chmod 777 -R /media/iapereira/USB\\ STICK/
-                        sudo chmod 777 -R /home/iapereira/emby/
-
-                        sudo systemctl stop jellyfin
-                        sudo systemctl start jellyfin
+sudo setfacl -R -m u:jellyfin:rwx /home/iapereira/emby
+sudo setfacl -R -m u:jellyfin:rwx /media/iapereira/hd
+sudo setfacl -R -m u:jellyfin:rwx /media/iapereira/igor
+sudo setfacl -R -m u:jellyfin:rwx /media/iapereira/IGOR_SSD_128GB 
+sudo setfacl -R -m u:jellyfin:rwx /media/iapereira/USB STICK
+sudo setfacl -R -m u:jellyfin:rwx /media/iapereira/hd_500gb       
+sudo setfacl -R -m u:jellyfin:rwx /media/iapereira/igor_500gb     
+sudo setfacl -R -m u:jellyfin:rwx /media/iapereira/IGOR_SSD_256GB 
+sudo service jellyfin stop
+sudo service jellyfin start
                     "
 
                     zenity --info \
@@ -318,5 +317,4 @@ while true; do
             ;;
     esac
 done
-```
 
